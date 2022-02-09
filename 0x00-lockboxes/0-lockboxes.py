@@ -1,25 +1,22 @@
 #!/usr/bin/python3
-"""  Lockboxes """
+"""Check if all boxes can be opened"""
 
 
 def canUnlockAll(boxes):
-    """Method to check unlocked boxes"""
-    dict_boxes = {0: "open"}
-    for i in range(1, len(boxes)):
-        dict_boxes[i] = "locked"
+    """Funtion to check if the boxes can be opened"""
+    key_list = boxes[0].copy()
+    true_keys = [0]
+    len_box = len(boxes) - 1
 
-    for x in boxes:
-        for index, box in enumerate(boxes):
-            if dict_boxes[index] == "open":
-                for key in box:
-                    dict_boxes[key] = "open"
+    for idx, key in enumerate(key_list):
+        if key > len_box:
+            continue
+        else:
+            for x in boxes[key]:
+                if x not in key_list:
+                    if x <= len_box:
+                        key_list.append(x)
+            if key not in true_keys:
+                true_keys.append(key)
 
-    cont = 0
-    for value in dict_boxes.values():
-        if value == "open":
-            cont += 1
-
-    if cont == len(dict_boxes):
-        return True
-    else:
-        return False
+    return len(true_keys) == len(boxes)
