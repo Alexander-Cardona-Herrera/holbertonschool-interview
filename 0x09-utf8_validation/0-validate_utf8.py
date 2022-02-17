@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Determines a valid UTF-8 encoding"""
 
